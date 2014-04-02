@@ -1,0 +1,79 @@
+#
+# (C) Copyright 2012 Henrik Nordstrom <henrik@henriknordstrom.net>
+#
+# Based on some other Makefile
+# (C) Copyright 2000-2003
+# Wolfgang Denk, DENX Software Engineering, wd@denx.de.
+#
+# See file CREDITS for list of people who contributed to this
+# project.
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 2 of
+# the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston,
+# MA 02111-1307 USA
+#
+
+include $(TOPDIR)/config.mk
+
+LIB	=  $(obj)lib$(SOC).o
+
+TARGETS =  $(obj).depend $(LIB)
+
+COBJS	+= timer.o
+COBJS	+= dram.o
+COBJS	+= board.o
+COBJS	+= clock.o
+COBJS	+= pinmux.o
+COBJS	+= watchdog.o
+ifdef DEBUG
+COBJS	+= early_print.o
+endif
+ifdef CONFIG_BOARD_POSTCLK_INIT
+COBJS	+= postclk_init.o
+endif
+ifdef CONFIG_SYS_SECONDARY_ON
+COBJS	+= secondary_init.o
+COBJS	+= smp.o
+endif
+
+ifndef CONFIG_SPL_BUILD
+COBJS	+= key.o
+COBJS	+= cpu_info.o
+ifdef CONFIG_CMD_WATCHDOG
+COBJS	+= cmd_watchdog.o
+endif
+endif
+
+ifdef CONFIG_SPL_BUILD
+ifdef CONFIG_SPL_FEL
+TARGETS	+= $(obj)start.o
+endif
+endif
+
+SRCS	:= $(SOBJS:.o=.S) $(COBJS:.o=.c)
+OBJS	:= $(addprefix $(obj),$(COBJS) $(COBJS-y) $(SOBJS))
+
+all:	$(TARGETS)
+
+$(LIB):	$(OBJS)
+	$(call cmd_link_o_target, $(OBJS))
+
+#########################################################################
+
+# defines $(obj).depend target
+include $(SRCTREE)/rules.mk
+
+sinclude $(obj).depend
+
+#########################################################################
