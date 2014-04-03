@@ -9,6 +9,10 @@ Original at: https://github.com/linux-sunxi/sunxi-bsp
 
 Original from Zhu concerning build BSP (already done)
 
+**Toolchains**
+
+Linaro: https://releases.linaro.org/13.06/components/toolchain/binaries
+
 
 > 1. git clone --recursive git://github.com/linux-sunxi/sunxi-bsp.git
 >
