@@ -9,9 +9,20 @@ Original at: https://github.com/linux-sunxi/sunxi-bsp
 
 Original from Zhu concerning build BSP (already done)
 
+
+**Prerequisites**
+
+Platform support: This is tested on Linux x86_64 only so far.
+
+You will need to run update-prereqs.sh and expand-prereqs.sh to setup the correct cross compiler.
+
+Ubuntu: You need <code>sudo apt-get install libusb-1.0</code>
+
 **Toolchains**
 
 Linaro: https://releases.linaro.org/13.06/components/toolchain/binaries
+
+
 
 
 > 1. git clone --recursive git://github.com/linux-sunxi/sunxi-bsp.git
