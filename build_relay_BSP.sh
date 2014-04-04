@@ -16,6 +16,9 @@ done
 DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
 
+CURRENT_KERNEL_CONF="WIGWAG_RELAY_kernel.config.current"
+KERNEL_CONF="WIGWAG_RELAY_kernel.config"
+
 
 if [ ! -e "$DIR/sunxi-bsp/WIGWAG.md" ]; then 
     eval $COLOR_RED
@@ -27,10 +30,11 @@ fi
 if [ "$1" == "configkernel" ]; then
     pushd $DIR/sunxi-bsp
     cp -a WIGWAG_RELAY-defconfig-linux ./build/sun4i_defconfig-linux
-    cp ./WIGWAG_RELAY_kernel.config linux-sunxi/.config
+    cp ./WIGWAG_RELAY_kernel.config ./build/sun4i_defconfig-linux/.config
     make linux-wwconfig
+    cp ./build/sun4i_defconfig-linux/.config ./$CURRENT_KERNEL_CONF
     eval $COLOR_BOLD
-    echo "If you want to use the new config permanently copy $DIR/sunxi-bsp/build/sun4i_defconfig-linux/.config to $DIR/sunxi-bsp/WIGWAG_RELAY_kernel.config"
+    echo "If you want to use the new config permanently copy $DIR/sunxi-bsp/WIGWAG_RELAY_kernel.config.current to $DIR/sunxi-bsp/WIGWAG_RELAY_kernel.config"
     echo ""
     echo "Otherwise: cd sunxi-bsp; make ww-controller"
     eval $COLOR_NORMAL
@@ -81,9 +85,19 @@ if [ ! -e "./build/sun4i_defconfig-linux/.config" ]; then
     eval $COLOR_NORMAL
     exit 1
 else 
-    eval $COLOR_BOLD
-    echo "cd sunxi-bsp; make ww-controller"
-    eval $COLOR_NORMAL
+    if [ -e ./$CURRENT_KERNEL_CONF ]; then
+	eval $COLOR_YELLOW
+	echo "Using recently configured kernel."
+	eval $COLOR_NORMAL
+	cp ./$CURRENT_KERNEL_CONF ./build/sun4i_defconfig-linux/.config
+    fi
+    if [ "$1" == "build" ]; then
+	make ww-controller
+    else
+	eval $COLOR_BOLD
+	echo "cd sunxi-bsp; make ww-controller"
+	eval $COLOR_NORMAL
+    fi
 fi
 
 popd

@@ -24,6 +24,22 @@ and
 
 Linaro: https://releases.linaro.org/13.06/components/toolchain/binaries
 
+**Building**
+
+From the root level of the project:
+    ./build_relay_BSP.sh build
+
+
+If you need to modify the Linux kernel configuration, you can:
+    ./build_relay_BSP.sh configkernel
+
+and then do a <code>./build_relay_BSP.sh build</code>
+
+Running <code>build_relay_BSP.sh</code> with no parameters will clean the tree.
+
+If you want to keep the changes to the kernel in the source tree, you should copy the file <code>WIGWAG_RELAY_kernel.config.current</code> over <code>WIGWAG_RELAY_kernel.config</code>
+We do all this to work around the sunxi default scripts which simply want to overwrite the kernel config constantly. (Note the Makefile changes from the base sunxi-bsp)
+
 
 Historical...
 -----------
