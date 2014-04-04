@@ -3,12 +3,11 @@ sunxi-bsp
 
 Sunxi-BSP from Allwinner's dev team
 
-Original at: https://github.com/linux-sunxi/sunxi-bsp
+Original at: [https://github.com/linux-sunxi/sunxi-bsp](https://github.com/linux-sunxi/sunxi-bsp)
 
-**WigWag specifics**
-
-Original from Zhu concerning build BSP (already done)
-
+WigWag specifics
+===========
+This tree is essentially the official Allwinner BSP as of 3/18/2014 but without the annoying submodules. It also has specific changes / additions to support the WigWag Relay.
 
 **Prerequisites**
 
@@ -23,7 +22,10 @@ Ubuntu: You need <code>sudo apt-get install libusb-1.0</code>
 Linaro: https://releases.linaro.org/13.06/components/toolchain/binaries
 
 
+Historical...
+-----------
 
+Old email from Zhu, kept for historical reasons. old info.
 
 > 1. git clone --recursive git://github.com/linux-sunxi/sunxi-bsp.git
 >
