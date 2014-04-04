@@ -15,7 +15,10 @@ Platform support: This is tested on Linux x86_64 only so far.
 
 You will need to run update-prereqs.sh and expand-prereqs.sh to setup the correct cross compiler.
 
-Ubuntu: You need <code>sudo apt-get install libusb-1.0</code>
+Ubuntu users - You will need:
+<code>sudo apt-get install libusb-1.0</code>
+and
+<code>sudo apt-get install uboot-mkimage</code>
 
 **Toolchains**
 

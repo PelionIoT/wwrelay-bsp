@@ -25,3 +25,4 @@ prereqs/
 expanded-prereqs/
 build/
 u-boot-sunxi/.boards.depend
+*.sh~
