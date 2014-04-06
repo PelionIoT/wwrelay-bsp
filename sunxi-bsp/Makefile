@@ -55,7 +55,7 @@ linux-wwrelay:
 	cd $(K_O_PATH) && ${CROSS_COMPILE}objcopy -R .note.gnu.build-id -S -O binary vmlinux bImage
 
 ww-controller: u-boot boot.scr script.bin linux-wwrelay libs
-	$(Q)scripts/mk_hwpack.sh $@
+	$(Q)scripts/mk_hwpack.sh $(HWPACK)
 
 
 linux-config: $(K_DOT_CONFIG)
