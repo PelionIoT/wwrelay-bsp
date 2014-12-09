@@ -897,6 +897,8 @@ sata_power_en            =
 ;sdc_used                 = 1	-> 0        
 ;[mmc3_para]              
 ;sdc_used                 = 1	-> 0    
+;zzz1
+;sdc_detmode              = 1 -> 3
 ;--------------------------------------------------------------------------------
 [mmc0_para]
 sdc_used                 = 1
@@ -914,7 +916,7 @@ sdc_wp                   =
                          
 [mmc1_para]              
 sdc_used                 = 0
-sdc_detmode              = 3
+sdc_detmode              = 1
 bus_width                = 4
 sdc_cmd                  = port:PH22<5><1><default><default>
 sdc_clk                  = port:PH23<5><1><default><default>
@@ -931,7 +933,7 @@ sdc_used                 = 0
                          
 [mmc3_para]              
 sdc_used                 = 0
-sdc_detmode              = 3
+sdc_detmode              = 1
 bus_width                = 4
 sdc_cmd                  = port:PI04<2><1><default><default>
 sdc_clk                  = port:PI05<2><1><default><default>
