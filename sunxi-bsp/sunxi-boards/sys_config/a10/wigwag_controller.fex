@@ -6,7 +6,7 @@
 
 [product]
 version = "1.0"
-machine = "A10-EVB-V1.2"
+machine = "Relay_Lite_A20_V1"
 
 ;----------------------------------------------------------------------------------
 ; system configuration
@@ -18,8 +18,8 @@ dcdc3_vol                = 1250
 ldo2_vol                 = 3000
 ldo3_vol                 = 2800
 ldo4_vol                 = 2800
-pll4_freq = 960
-pll6_freq = 960
+;zzz pll4_freq = 960
+;zzz pll6_freq = 960
 power_start = 0
 storage_type = 1
 sdc_d1                  = port:PF0<2><1><default><default>
@@ -28,6 +28,11 @@ sdc_clk                 = port:PF2<2><1><default><default>
 sdc_cmd                 = port:PF3<2><1><default><default>
 sdc_d3                  = port:PF4<2><1><default><default>
 sdc_d2                  = port:PF5<2><1><default><default>
+
+;zzz
+[clock]
+p114 = 960
+p116 = 960
 ;zzz
 
 [card_boot]
